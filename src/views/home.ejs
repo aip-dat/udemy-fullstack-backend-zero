@@ -10,11 +10,9 @@
     <div class="topnav">
       <a class="active" href="/">Home</a>
       <a href="/create">Create user</a>
-      <a href="#contact">Contact</a>
+      <a href="/edit">Edit</a>
       <a href="#about">About</a>
     </div>
-
-    <%= JSON.stringify(listUsers) %>
 
     <table
       class="ws-table-all w3-bordered w3-striped w3-border test w3-hoverable"
@@ -30,31 +28,27 @@
         </tr>
       </tbody>
       <tbody>
+        <% for (var i = 0; i < listUsers.length; i++) { %>
         <tr>
-          <td>Jill</td>
-          <td>Smith</td>
-          <td>50</td>
+          <td><%= listUsers[i].id %></td>
+          <td><%= listUsers[i].email %></td>
+          <td><%= listUsers[i].name %></td>
+          <td><%= listUsers[i].city %></td>
+          <td>
+            <div>
+              <a href="/edit/<%= listUsers[i].id %>">Edit</a>
+
+              <form action="/delete/<%= listUsers[i].id %>">
+                <button
+                  style="background-color: crimson; margin: 5; padding: 5"
+                >
+                  Delete
+                </button>
+              </form>
+            </div>
+          </td>
         </tr>
-        <tr>
-          <td>Eve</td>
-          <td>Jackson</td>
-          <td>94</td>
-        </tr>
-        <tr>
-          <td>Adam</td>
-          <td>Johnson</td>
-          <td>67</td>
-        </tr>
-        <tr>
-          <td>Bo</td>
-          <td>Nilsson</td>
-          <td>50</td>
-        </tr>
-        <tr>
-          <td>Mike</td>
-          <td>Ross</td>
-          <td>35</td>
-        </tr>
+        <% } %>
       </tbody>
     </table>
   </body>
